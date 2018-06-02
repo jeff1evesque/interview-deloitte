@@ -86,3 +86,33 @@ data.f$city <- tolower(trimws(data.f$city))
 data.f$city <- tolower(trimws(data.f$city))
 data.f$state <- tolower(abbr2state(trimws(data.f$state)))
 data.m$state <- tolower(abbr2state(trimws(data.m$state)))
+
+## complete case: remove any rows with NA
+data.f.complete <- data.f[complete.cases(data.f),]
+data.m.complete <- data.m[complete.cases(data.m),]
+
+## incomplete case: anticipate missing values
+data.f.adjusted <- data.f
+data.m.adjusted <- data.m
+
+data.f.adjusted$state[data.f$city == 'silver spring' & is.na(data.f$state)] <- 'maryland'
+data.f.adjusted$state[data.f$city == 'ellicott city' & is.na(data.f$state)] <- 'maryland'
+data.f.adjusted$state[data.f$city == 'north potomac' & is.na(data.f$state)] <- 'maryland'
+data.f.adjusted$state[data.f$city == 'fredericksburg' & is.na(data.f$state)] <- 'virginia'
+data.f.adjusted$state[data.f$city == 'washington' & is.na(data.f$state)] <- 'district of columbia'
+data.f.adjusted$state[data.f$city == 'potomac falls' & is.na(data.f$state)] <- 'maryland'
+data.f.adjusted$city[data.f$city == 'potomac falls'] <- 'potomac'
+
+data.m.adjusted$state[data.m$city == 'silver spring' & is.na(data.m$state)] <- 'maryland'
+data.m.adjusted$state[data.m$city == 'ellicott city' & is.na(data.m$state)] <- 'maryland'
+data.m.adjusted$state[data.m$city == 'north potomac' & is.na(data.m$state)] <- 'maryland'
+data.m.adjusted$state[data.m$city == 'fredericksburg' & is.na(data.m$state)] <- 'virginia'
+data.m.adjusted$state[data.m$city == 'washington' & is.na(data.m$state)] <- 'district of columbia'
+data.m.adjusted$state[data.m$city == 'potomac falls' & is.na(data.m$state)] <- 'maryland'
+data.m.adjusted$city[data.m$city == 'potomac falls'] <- 'potomac'
+
+data.f.adjusted$age[data.f.adjusted$age < 1] <- NA
+data.m.adjusted$age[data.m.adjusted$age < 1] <- NA
+
+data.f.adjusted <- data.f.adjusted[complete.cases(data.f.adjusted),]
+data.m.adjusted <- data.m.adjusted[complete.cases(data.m.adjusted),]
