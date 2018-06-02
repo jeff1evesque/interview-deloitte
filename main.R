@@ -32,19 +32,8 @@ data.m <- read.delim(
 )
 
 ## rename columns
-colnames(data.f) <- tolower(colnames(data.f))
-colnames(data.f)[colnames(data.f) == 'Ag'] <- 'age'
-colnames(data.f)[colnames(data.f) == 'num'] <- 'bib'
-colnames(data.f)[colnames(data.f) == 'Gun.Tim'] <- 'gun_time'
-colnames(data.f)[colnames(data.f) == 'Net.Tim'] <- 'net_time'
-colnames(data.f)[colnames(data.f) == 'Div.Tot'] <- 'division_place'
-
-colnames(data.m) <- tolower(colnames(data.m))
-colnames(data.m)[colnames(data.m) == 'Ag'] <- 'age'
-colnames(data.m)[colnames(data.m) == 'num'] <- 'bib'
-colnames(data.m)[colnames(data.m) == 'Gun.Tim'] <- 'gun_time'
-colnames(data.m)[colnames(data.m) == 'Net.Tim'] <- 'net_time'
-colnames(data.m)[colnames(data.m) == 'Div.Tot'] <- 'division_place'
+colnames(data.f) <- tolower(c('place', 'division_place', 'bib', 'name', 'age', 'hometown', 'gun_time', 'net_time', 'pace'))
+colnames(data.m) <- tolower(c('place', 'division_place', 'bib', 'name', 'age', 'hometown', 'gun_time', 'net_time', 'pace'))
 
 ## cleanup dataset
 data.f$gun_time <- trimws(gsub('[#*a-zA-Z]', '', data.f$gun_time))
