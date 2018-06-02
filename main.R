@@ -20,6 +20,10 @@ setwd(cwd)
 devtools::install_local(paste(cwd, sep='', '/packages/deloitteUtility'))
 library('deloitteUtility')
 
+## load packages
+load_package('reshape2')
+load_package('openintro')
+
 ## load datasets
 data.f <- read.delim(
   'data/MA_Exer_PikesPeak_Females.txt',
@@ -56,7 +60,7 @@ data.m$division_place <- trimws(gsub('[#*a-zA-Z]', '', data.m$division_place))
 data.m$hometown <- trimws(gsub('[,.]', '', data.m$hometown))
 data.m$hometown <- trimws(data.m$hometown)
 
-## ggmap compliant
+## insert delimiter
 data.f$hometown <- lapply(data.f$hometown, function(x) {
   return(strReverse(sub(' ', ' ,', strReverse(x))))
 })
@@ -65,3 +69,20 @@ data.m$hometown <- lapply(data.m$hometown, function(x) {
   return(strReverse(sub(' ', ' ,', strReverse(x))))
 })
 
+## explode column: 'hometown' column into 'city', and 'state' columns
+data.f <- cbind(
+  colsplit(data.f$hometown, ',', c('city', 'state')),
+  data.f[,-which(names(data.f) == 'hometown')]
+)
+
+## explode column: 'hometown' column into 'city', and 'state' columns
+data.m <- cbind(
+  colsplit(data.m$hometown, ',', c('city', 'state')),
+  data.m[,-which(names(data.m) == 'hometown')]
+)
+
+## consistent lowercase
+data.f$city <- tolower(trimws(data.f$city))
+data.f$state <- tolower(trimws(data.f$city))
+data.f$state <- tolower(abbr2state(trimws(data.f$state)))
+data.m$state <- tolower(abbr2state(trimws(data.m$state)))
