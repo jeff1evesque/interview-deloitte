@@ -1,0 +1,5 @@
+# ignore files + directories
+visualization/
+.Rproj.user
+.Rhistory
+.RData
