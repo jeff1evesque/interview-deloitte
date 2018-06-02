@@ -83,6 +83,6 @@ data.m <- cbind(
 
 ## consistent lowercase
 data.f$city <- tolower(trimws(data.f$city))
-data.f$state <- tolower(trimws(data.f$city))
+data.f$city <- tolower(trimws(data.f$city))
 data.f$state <- tolower(abbr2state(trimws(data.f$state)))
 data.m$state <- tolower(abbr2state(trimws(data.m$state)))
