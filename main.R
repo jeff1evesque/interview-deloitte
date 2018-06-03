@@ -272,7 +272,7 @@ grid.arrange(
   gg_complete_females_boxplot,
   gg_complete_females_points,
   nrow = 1,
-  top = 'Female Runners: with anticipated values',
+  top = 'Female Runners: with NA values removed',
   bottom = textGrob(
     'Jeffrey Levesque',
     gp = gpar(fontface = 3, fontsize = 9),
@@ -314,7 +314,7 @@ grid.arrange(
   gg_complete_males_boxplot,
   gg_complete_males_points,
   nrow = 1,
-  top = 'Male Runners: with anticipated values',
+  top = 'Male Runners: with NA values removed',
   bottom = textGrob(
     'Jeffrey Levesque',
     gp = gpar(fontface = 3, fontsize = 9),
