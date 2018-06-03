@@ -141,7 +141,7 @@ gg <- ggplot() +
   geom_map(data=us, map=us, aes(x=us$long, y=us$lat, map_id=region), fill='gray75', color='gray7', size=0.15)
 
 ##
-## us heatmap: females with adjusted with anticipated values
+## us heatmap: females with adjusted anticipated values
 ##
 gg_adjusted_females_heatmap <- gg +
   geom_map(data=data.f.adjusted, map=us, aes(fill=delta_time, map_id=state), color='gray10') +
@@ -152,7 +152,7 @@ gg_adjusted_females_heatmap <- gg +
   theme(plot.title = element_text(hjust = 0.5))
 
 ##
-## us heatmap: males with adjusted with anticipated values
+## us heatmap: males with adjusted anticipated values
 ##
 gg_adjusted_males_heatmap <- gg +
   geom_map(data=data.m.adjusted, map=us, aes(fill=delta_time, map_id=state), color='gray10') +
