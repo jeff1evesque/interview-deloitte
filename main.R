@@ -21,12 +21,7 @@ devtools::install_local(paste(cwd, sep='', '/packages/deloitteUtility'))
 library('deloitteUtility')
 
 ## load packages
-load_package('reshape2')
-load_package('openintro')
-load_package('ggplot2')
-#load_package('Rmisc')
-load_package('grid')
-load_package('gridExtra')
+load_package(c('reshape2', 'openintro', 'ggplot2', 'Rmisc', 'grid', 'gridExtra'))
 
 ## create ignored directories
 dir.create(file.path(cwd, 'visualization'), showWarnings = FALSE)
