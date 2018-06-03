@@ -164,12 +164,12 @@ range.m.complete <- range(data.m.complete$net_time)
 gg_adjusted_females <- ggplot(data.f.adjusted)
 
 gg_adjusted_females_boxplot <- gg_adjusted_females +
-  geom_boxplot(aes(x=factor(1), y=net_time)) +
+  geom_boxplot(aes(x=factor(1), y=net_time), alpha=0.5) +
   labs(x = 'Females', y = 'Net Time (seconds)', title = 'Net Time vs. Female Runners') +
   theme(plot.title = element_text(hjust = 0.5))
 
 gg_adjusted_females_points <- gg_adjusted_females +
-  geom_point(stat = 'identity', aes(x=age, y=net_time), alpha=0.2) +
+  geom_point(stat = 'identity', aes(x=age, y=net_time), alpha=0.35) +
   geom_abline(slope=0, intercept = mean.f.adjusted, color = 'dodgerblue3') +
   geom_abline(slope=0, intercept = median.f.adjusted, color = 'darkorchid3') +
   labs(x = 'Age', y = 'Net Time (seconds)', title = 'Net Time vs. Age') +
@@ -206,12 +206,12 @@ dev.off()
 gg_adjusted_males <- ggplot(data.m.adjusted)
 
 gg_adjusted_males_boxplot <- gg_adjusted_males +
-  geom_boxplot(aes(x=factor(1), y=net_time)) +
+  geom_boxplot(aes(x=factor(1), y=net_time), alpha=0.5) +
   labs(x = 'Males', y = 'Net Time (seconds)', title = 'Net Time vs. Male Runners') +
   theme(plot.title = element_text(hjust = 0.5))
 
 gg_adjusted_males_points <- gg_adjusted_males +
-  geom_point(stat = 'identity', aes(x=age, y=net_time), alpha=0.2) +
+  geom_point(stat = 'identity', aes(x=age, y=net_time), alpha=0.35) +
   geom_abline(slope=0, intercept = mean.m.adjusted, color = 'dodgerblue3') +
   geom_abline(slope=0, intercept = median.m.adjusted, color = 'darkorchid3') +
   labs(x = 'Age', y = 'Net Time (seconds)', title = 'Net Time vs. Age') +
@@ -248,12 +248,12 @@ dev.off()
 gg_complete_females <- ggplot(data.f.complete)
 
 gg_complete_females_boxplot <- gg_complete_females +
-  geom_boxplot(aes(x=factor(1), y=net_time)) +
+  geom_boxplot(aes(x=factor(1), y=net_time), alpha=0.5) +
   labs(x = 'Females', y = 'Net Time (seconds)', title = 'Net Time vs. Female Runners') +
   theme(plot.title = element_text(hjust = 0.5))
 
 gg_complete_females_points <- gg_complete_females +
-  geom_point(stat = 'identity', aes(x=age, y=net_time), alpha=0.2) +
+  geom_point(stat = 'identity', aes(x=age, y=net_time), alpha=0.35) +
   geom_abline(slope=0, intercept = mean.f.complete, color = 'dodgerblue3') +
   geom_abline(slope=0, intercept = median.f.complete, color = 'darkorchid3') +
   labs(x = 'Age', y = 'Net Time (seconds)', title = 'Net Time vs. Age') +
@@ -290,12 +290,12 @@ dev.off()
 gg_complete_males <- ggplot(data.m.complete)
 
 gg_complete_males_boxplot <- gg_complete_males +
-  geom_boxplot(aes(x=factor(1), y=net_time)) +
+  geom_boxplot(aes(x=factor(1), y=net_time), alpha=0.5) +
   labs(x = 'Males', y = 'Net Time (seconds)', title = 'Net Time vs. Male Runners') +
   theme(plot.title = element_text(hjust = 0.5))
 
 gg_complete_males_points <- gg_complete_males +
-  geom_point(stat = 'identity', aes(x=age, y=net_time), alpha=0.2) +
+  geom_point(stat = 'identity', aes(x=age, y=net_time), alpha=0.35) +
   geom_abline(slope=0, intercept = mean.m.complete, color = 'dodgerblue3') +
   geom_abline(slope=0, intercept = median.m.complete, color = 'darkorchid3') +
   labs(x = 'Age', y = 'Net Time (seconds)', title = 'Net Time vs. Age') +
