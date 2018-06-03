@@ -94,6 +94,10 @@ data.m$state <- tolower(abbr2state(trimws(data.m$state)))
 data.f.complete <- data.f[complete.cases(data.f),]
 data.m.complete <- data.m[complete.cases(data.m),]
 
+## complete case: define division
+data.f.complete$division <- create_division(data.f.complete$age)
+data.m.complete$division <- create_division(data.m.complete$age)
+
 ## incomplete case: anticipate missing values
 data.f.adjusted <- data.f
 data.m.adjusted <- data.m
@@ -120,6 +124,9 @@ data.m.adjusted$age[data.m.adjusted$age < 1] <- NA
 data.f.adjusted <- data.f.adjusted[complete.cases(data.f.adjusted),]
 data.m.adjusted <- data.m.adjusted[complete.cases(data.m.adjusted),]
 
+data.f.adjusted$division <- create_division(data.f.adjusted$age)
+data.m.adjusted$division <- create_division(data.m.adjusted$age)
+
 ##
 ## 2: analyze the difference between gun, and net time race results
 ##
@@ -134,7 +141,7 @@ gg <- ggplot() +
   geom_map(data=us, map=us, aes(x=us$long, y=us$lat, map_id=region), fill='gray75', color='gray7', size=0.15)
 
 ##
-## us heatmap: females with adjusted with anticipated values
+## us heatmap: females with adjusted anticipated values
 ##
 gg_adjusted_females_heatmap <- gg +
   geom_map(data=data.f.adjusted, map=us, aes(fill=delta_time, map_id=state), color='gray10') +
@@ -145,7 +152,7 @@ gg_adjusted_females_heatmap <- gg +
   theme(plot.title = element_text(hjust = 0.5))
 
 ##
-## us heatmap: males with adjusted with anticipated values
+## us heatmap: males with adjusted anticipated values
 ##
 gg_adjusted_males_heatmap <- gg +
   geom_map(data=data.m.adjusted, map=us, aes(fill=delta_time, map_id=state), color='gray10') +
