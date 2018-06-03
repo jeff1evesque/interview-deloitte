@@ -1,15 +1,8 @@
 ##
-## main.R, performs the following exploratory topics:
+## descriptive_statistics.R, performs the following exploratory topics:
 ##
 ##     1. determine the mean, median, mode, and range of the race result for
 ##        all racers by gender
-##
-##     2. analyze the difference between gun, and net time race results
-##
-##     3. determine time difference between Chris Doe, from top 10 percentile
-##        of racers of the same division
-##
-##     4. compare the race results of each division
 ##
 
 ## set project cwd
@@ -21,7 +14,7 @@ devtools::install_local(paste(cwd, sep='', '/packages/deloitteUtility'))
 library('deloitteUtility')
 
 ## load packages
-load_package(c('reshape2', 'openintro', 'ggplot2', 'Rmisc', 'grid', 'gridExtra'))
+load_package(c('reshape2', 'openintro', 'ggplot2', 'Rmisc', 'grid', 'gridExtra', 'oce'))
 
 ## create ignored directories
 dir.create(file.path(cwd, 'visualization'), showWarnings = FALSE)
@@ -154,7 +147,7 @@ mode.m.complete <- names(table(data.m.complete$net_time))[table(data.m.complete$
 range.m.complete <- range(data.m.complete$net_time)
 
 ##
-## boxplot + points: females with adjusted with anticipated values
+## boxplot + points: females with adjusted anticipated values
 ##
 gg_adjusted_females <- ggplot(data.f.adjusted)
 
@@ -196,7 +189,7 @@ grid.arrange(
 dev.off()
 
 ##
-## boxplot + points: males with adjusted with anticipated values
+## boxplot + points: males with adjusted anticipated values
 ##
 gg_adjusted_males <- ggplot(data.m.adjusted)
 
