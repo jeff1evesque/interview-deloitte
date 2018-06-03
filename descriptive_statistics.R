@@ -1,15 +1,8 @@
 ##
-## main.R, performs the following exploratory topics:
+## descriptive_statistics.R, performs the following exploratory topics:
 ##
 ##     1. determine the mean, median, mode, and range of the race result for
 ##        all racers by gender
-##
-##     2. analyze the difference between gun, and net time race results
-##
-##     3. determine time difference between Chris Doe, from top 10 percentile
-##        of racers of the same division
-##
-##     4. compare the race results of each division
 ##
 
 ## set project cwd
