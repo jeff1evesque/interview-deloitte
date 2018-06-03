@@ -13,7 +13,7 @@ devtools::install_local(paste(cwd, sep='', '/packages/deloitteUtility'))
 library('deloitteUtility')
 
 ## load packages
-load_package(c('reshape2', 'openintro', 'ggplot2', 'Rmisc', 'grid', 'gridExtra'))
+load_package(c('reshape2', 'openintro', 'ggplot2', 'Rmisc', 'grid', 'gridExtra', 'oce'))
 
 ## create ignored directories
 dir.create(file.path(cwd, 'visualization'), showWarnings = FALSE)
@@ -121,7 +121,5 @@ data.f.adjusted <- data.f.adjusted[complete.cases(data.f.adjusted),]
 data.m.adjusted <- data.m.adjusted[complete.cases(data.m.adjusted),]
 
 ##
-## 2: mean, median, mode, and range
-##
-## Note: https://rpubs.com/mohammadshadan/meanmedianmode
+## 2: analyze the difference between gun, and net time race results
 ##
