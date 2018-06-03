@@ -187,7 +187,7 @@ gg_complete_females_heatmap <- gg +
   theme(plot.title = element_text(hjust = 0.5))
 
 ##
-## us heatmap: males with complete with empty values removed (not adjusted)
+## us heatmap: males with empty values removed (not adjusted)
 ##
 gg_complete_males_heatmap <- gg +
   geom_map(data=data.m.complete, map=us, aes(fill=delta_time, map_id=state), color='gray10') +
@@ -217,3 +217,139 @@ grid.arrange(
 ## close current plot
 dev.off()
 
+##
+## histogram + boxplot: females with adjusted anticipated values
+##
+gg_adjusted_females <- ggplot(data.f.adjusted)
+
+gg_adjusted_females_bar <- gg_adjusted_females +
+  geom_bar(stat = 'summary', fun.y = 'mean', color='black', aes(x=age, y=delta_time, fill=state)) +
+  labs(x = 'Age', y = 'Delta Time (g-n)', title = 'Delta Time vs. Female Age', fill = 'State') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+gg_adjusted_females_boxplot <- gg_adjusted_females +
+  geom_boxplot(aes(x=factor(1), y=delta_time), alpha=0.5) +
+  labs(x = 'Females', y = 'Delta Time (seconds)', title = 'Delta Time vs. Female Runners') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+## save visualization
+png('visualization/descriptive-female-adjusted.png', width = 1200, height = 600)
+
+## generate grid to contain visualization
+grid.arrange(
+  gg_adjusted_females_bar,
+  gg_adjusted_females_boxplot,
+  nrow = 1,
+  top = 'Gun Time minus Net Time: with adjusted anticipated values',
+  bottom = textGrob(
+    'Jeffrey Levesque',
+    gp = gpar(fontface = 3, fontsize = 9),
+    hjust = 1,
+    x = 1
+  )
+)
+
+## close current plot
+dev.off()
+
+##
+## histogram + boxplot: males with adjusted anticipated values
+##
+gg_adjusted_males <- ggplot(data.m.adjusted)
+
+gg_adjusted_males_bar <- gg_adjusted_males +
+  geom_bar(stat = 'summary', fun.y = 'mean', color='black', aes(x=age, y=delta_time, fill=state)) +
+  labs(x = 'Age', y = 'Delta Time (g-n)', title = 'Delta Time vs. Males Age', fill = 'State') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+gg_adjusted_males_boxplot <- gg_adjusted_males +
+  geom_boxplot(aes(x=factor(1), y=delta_time), alpha=0.5) +
+  labs(x = 'males', y = 'Delta Time (seconds)', title = 'Delta Time vs. Males Runners') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+## save visualization
+png('visualization/descriptive-males-adjusted.png', width = 1200, height = 600)
+
+## generate grid to contain visualization
+grid.arrange(
+  gg_adjusted_males_bar,
+  gg_adjusted_males_boxplot,
+  nrow = 1,
+  top = 'Gun Time minus Net Time: with adjusted anticipated values',
+  bottom = textGrob(
+    'Jeffrey Levesque',
+    gp = gpar(fontface = 3, fontsize = 9),
+    hjust = 1,
+    x = 1
+  )
+)
+
+##
+## histogram + boxplot: females with empty values removed (not adjusted)
+##
+gg_complete_females <- ggplot(data.f.complete)
+
+gg_complete_females_bar <- gg_complete_females +
+  geom_bar(stat = 'summary', fun.y = 'mean', color='black', aes(x=age, y=delta_time, fill=state)) +
+  labs(x = 'Age', y = 'Delta Time (g-n)', title = 'Delta Time vs. Female Age', fill = 'State') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+gg_complete_females_boxplot <- gg_complete_females +
+  geom_boxplot(aes(x=factor(1), y=delta_time), alpha=0.5) +
+  labs(x = 'Females', y = 'Delta Time (seconds)', title = 'Delta Time vs. Female Runners') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+## save visualization
+png('visualization/descriptive-female-complete.png', width = 1200, height = 600)
+
+## generate grid to contain visualization
+grid.arrange(
+  gg_complete_females_bar,
+  gg_complete_females_boxplot,
+  nrow = 1,
+  top = 'Gun Time minus Net Time: with complete anticipated values',
+  bottom = textGrob(
+    'Jeffrey Levesque',
+    gp = gpar(fontface = 3, fontsize = 9),
+    hjust = 1,
+    x = 1
+  )
+)
+
+## close current plot
+dev.off()
+
+##
+## histogram + boxplot: males with empty values removed (not adjusted)
+##
+gg_complete_males <- ggplot(data.m.complete)
+
+gg_complete_males_bar <- gg_complete_males +
+  geom_bar(stat = 'summary', fun.y = 'mean', color='black', aes(x=age, y=delta_time, fill=state)) +
+  labs(x = 'Age', y = 'Delta Time (g-n)', title = 'Delta Time vs. Males Age', fill = 'State') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+gg_complete_males_boxplot <- gg_complete_males +
+  geom_boxplot(aes(x=factor(1), y=delta_time), alpha=0.5) +
+  labs(x = 'males', y = 'Delta Time (seconds)', title = 'Delta Time vs. Males Runners') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+## save visualization
+png('visualization/descriptive-males-complete.png', width = 1200, height = 600)
+
+## generate grid to contain visualization
+grid.arrange(
+  gg_complete_males_bar,
+  gg_complete_males_boxplot,
+  nrow = 1,
+  top = 'Gun Time minus Net Time: with complete anticipated values',
+  bottom = textGrob(
+    'Jeffrey Levesque',
+    gp = gpar(fontface = 3, fontsize = 9),
+    hjust = 1,
+    x = 1
+  )
+)
+
+## close current plot
+dev.off()
