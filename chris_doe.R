@@ -94,10 +94,13 @@ data.m$state <- tolower(abbr2state(trimws(data.m$state)))
 data.f.complete <- data.f[complete.cases(data.f),]
 data.m.complete <- data.m[complete.cases(data.m),]
 
+## complete case: define division
+data.f.complete$division <- create_division(data.f.complete$age)
+data.m.complete$division <- create_division(data.m.complete$age)
+
 ## incomplete case: anticipate missing values
 data.f.adjusted <- data.f
 data.m.adjusted <- data.m
-
 data.f.adjusted$state[data.f$city == 'silver spring' & is.na(data.f$state)] <- 'maryland'
 data.f.adjusted$state[data.f$city == 'ellicott city' & is.na(data.f$state)] <- 'maryland'
 data.f.adjusted$state[data.f$city == 'north potomac' & is.na(data.f$state)] <- 'maryland'
@@ -119,6 +122,9 @@ data.m.adjusted$age[data.m.adjusted$age < 1] <- NA
 
 data.f.adjusted <- data.f.adjusted[complete.cases(data.f.adjusted),]
 data.m.adjusted <- data.m.adjusted[complete.cases(data.m.adjusted),]
+
+data.f.adjusted$division <- create_division(data.f.adjusted$age)
+data.m.adjusted$division <- create_division(data.m.adjusted$age)
 
 ##
 ## 3: analyze chris doe vs. 10th percentile same division
