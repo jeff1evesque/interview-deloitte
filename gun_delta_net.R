@@ -284,6 +284,9 @@ grid.arrange(
   )
 )
 
+## close current plot
+dev.off()
+
 ##
 ## histogram + boxplot: females with empty values removed (not adjusted)
 ##
