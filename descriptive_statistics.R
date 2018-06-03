@@ -147,7 +147,7 @@ mode.m.complete <- names(table(data.m.complete$net_time))[table(data.m.complete$
 range.m.complete <- range(data.m.complete$net_time)
 
 ##
-## boxplot + points: females with adjusted with anticipated values
+## boxplot + points: females with adjusted anticipated values
 ##
 gg_adjusted_females <- ggplot(data.f.adjusted)
 
@@ -189,7 +189,7 @@ grid.arrange(
 dev.off()
 
 ##
-## boxplot + points: males with adjusted with anticipated values
+## boxplot + points: males with adjusted anticipated values
 ##
 gg_adjusted_males <- ggplot(data.m.adjusted)
 
