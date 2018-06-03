@@ -13,7 +13,7 @@ devtools::install_local(paste(cwd, sep='', '/packages/deloitteUtility'))
 library('deloitteUtility')
 
 ## load packages
-load_package(c('reshape2', 'openintro', 'ggplot2', 'Rmisc', 'grid', 'gridExtra', 'oce'))
+load_package(c('reshape2', 'openintro', 'ggplot2', 'Rmisc', 'grid', 'gridExtra', 'oce', 'ggmap', 'fiftystater'))
 
 ## create ignored directories
 dir.create(file.path(cwd, 'visualization'), showWarnings = FALSE)
@@ -123,3 +123,97 @@ data.m.adjusted <- data.m.adjusted[complete.cases(data.m.adjusted),]
 ##
 ## 2: analyze the difference between gun, and net time race results
 ##
+data.f.adjusted$delta_time <- data.f.adjusted$gun_time - data.f.adjusted$net_time
+data.f.complete$delta_time <- data.f.complete$gun_time - data.f.complete$net_time
+data.m.adjusted$delta_time <- data.m.adjusted$gun_time - data.m.adjusted$net_time
+data.m.complete$delta_time <- data.m.complete$gun_time - data.m.complete$net_time
+
+## generate ggmap
+us <- map_data('state')
+gg <- ggplot() +
+  geom_map(data=us, map=us, aes(x=us$long, y=us$lat, map_id=region), fill='gray75', color='gray7', size=0.15)
+
+##
+## us heatmap: females with adjusted with anticipated values
+##
+gg_adjusted_females_heatmap <- gg +
+  geom_map(data=data.f.adjusted, map=us, aes(fill=delta_time, map_id=state), color='gray10') +
+  guides(color=FALSE) +
+  coord_map() +
+  expand_limits(x=us$long, y=us$lat) +
+  labs(x = 'Longitude', y = 'Latitude', title = 'Female Runners', fill = 'Delta time') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+##
+## us heatmap: males with adjusted with anticipated values
+##
+gg_adjusted_males_heatmap <- gg +
+  geom_map(data=data.m.adjusted, map=us, aes(fill=delta_time, map_id=state), color='gray10') +
+  guides(color=FALSE) +
+  coord_map() +
+  expand_limits(x=us$long, y=us$lat) +
+  labs(x = 'Longitude', y = 'Latitude', title = 'Male Runners', fill = 'Delta time') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+## save visualization
+png('visualization/us-heatmap-adjusted.png', width = 1200, height = 600)
+
+## generate grid to contain visualization
+grid.arrange(
+  gg_adjusted_females_heatmap,
+  gg_adjusted_males_heatmap,
+  nrow = 1,
+  top = 'Gun Time minus Net Time: with anticipated values',
+  bottom = textGrob(
+    'Jeffrey Levesque',
+    gp = gpar(fontface = 3, fontsize = 9),
+    hjust = 1,
+    x = 1
+  )
+)
+
+## close current plot
+dev.off()
+
+##
+## us heatmap: females with complete with empty values removed (not adjusted)
+##
+gg_complete_females_heatmap <- gg +
+  geom_map(data=data.f.complete, map=us, aes(fill=delta_time, map_id=state), color='gray10') +
+  guides(color=FALSE) +
+  coord_map() +
+  expand_limits(x=us$long, y=us$lat) +
+  labs(x = 'Longitude', y = 'Latitude', title = 'Female Runners', fill = 'Delta time') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+##
+## us heatmap: males with complete with empty values removed (not adjusted)
+##
+gg_complete_males_heatmap <- gg +
+  geom_map(data=data.m.complete, map=us, aes(fill=delta_time, map_id=state), color='gray10') +
+  guides(color=FALSE) +
+  coord_map() +
+  expand_limits(x=us$long, y=us$lat) +
+  labs(x = 'Longitude', y = 'Latitude', title = 'Male Runners', fill = 'Delta time') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+## save visualization
+png('visualization/us-heatmap-complete.png', width = 1200, height = 600)
+
+## generate grid to contain visualization
+grid.arrange(
+  gg_complete_females_heatmap,
+  gg_complete_males_heatmap,
+  nrow = 1,
+  top = 'Gun Time minus Net Time: with NA values removed',
+  bottom = textGrob(
+    'Jeffrey Levesque',
+    gp = gpar(fontface = 3, fontsize = 9),
+    hjust = 1,
+    x = 1
+  )
+)
+
+## close current plot
+dev.off()
+
