@@ -369,7 +369,7 @@ dev.off()
 ##
 gg_correlation_female_adjusted <- ggplot(data.f.adjusted, aes(x = net_time, y = gun_time, color=as.numeric(division))) +
   geom_line() +
-  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Females: Gun Time vs. Net Time', fill = 'Division') +
+  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Females: Gun Time vs. Net Time', color = 'Division') +
   theme(plot.title = element_text(hjust = 0.5))
 
 ##
@@ -377,7 +377,7 @@ gg_correlation_female_adjusted <- ggplot(data.f.adjusted, aes(x = net_time, y = 
 ##
 gg_correlation_male_adjusted <- ggplot(data.m.adjusted, aes(x = net_time, y = gun_time, color=as.numeric(division))) +
   geom_line() +
-  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Males: Gun Time vs. Net Time', fill = 'Division') +
+  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Males: Gun Time vs. Net Time', color = 'Division') +
   theme(plot.title = element_text(hjust = 0.5))
 
 ## save visualization
@@ -405,7 +405,7 @@ dev.off()
 ##
 gg_correlation_female_complete <- ggplot(data.f.complete, aes(x = net_time, y = gun_time, color=as.numeric(division))) +
   geom_line() +
-  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Females: Gun Time vs. Net Time', fill = 'Division') +
+  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Females: Gun Time vs. Net Time', color = 'Division') +
   theme(plot.title = element_text(hjust = 0.5))
 
 ##
@@ -413,7 +413,7 @@ gg_correlation_female_complete <- ggplot(data.f.complete, aes(x = net_time, y = 
 ##
 gg_correlation_male_complete <- ggplot(data.m.complete, aes(x = net_time, y = gun_time, color=as.numeric(division))) +
   geom_line() +
-  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Males: Gun Time vs. Net Time', fill = 'Division') +
+  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Males: Gun Time vs. Net Time', color = 'Division') +
   theme(plot.title = element_text(hjust = 0.5))
 
 ## save visualization
