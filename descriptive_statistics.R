@@ -154,6 +154,18 @@ mode.m.complete <- names(table(data.m.complete$net_time))[table(data.m.complete$
 range.m.complete <- range(data.m.complete$net_time)
 
 ##
+## barchart: mean, median, mode
+##
+data.descriptive <- data.frame(
+  c(mean.f.adjusted, median.f.adjusted),
+  c(mean.m.adjusted, median.m.adjusted),
+  c(mean.f.complete, median.f.complete),
+  c(mean.m.complete, median.m.complete)
+)
+colnames(data.descriptive) <- c('female_adjusted', 'male_adjusted', 'female_complete', 'male_complete')
+rownames(data.descriptive) <- c('mean', 'median')
+
+##
 ## boxplot + points: females with adjusted anticipated values
 ##
 gg_adjusted_females <- ggplot(data.f.adjusted)
