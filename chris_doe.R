@@ -156,8 +156,8 @@ gg_full_adjusted <- ggplot(data.m.adjusted.sub, aes(x=factor(1), y=net_time)) +
   labs(x = 'State', y = 'Net Time (seconds)', title = 'Full Data: Net Time vs. State') +
   theme(plot.title = element_text(hjust = 0.5))
 
-gg_segregate_adjusted <- ggplot(data.m.adjusted.sub, aes(x=state, y=net_time, color=state)) +
-  geom_violin(trim=FALSE, aes(fill=state)) +
+gg_segregate_adjusted <- ggplot(data.m.adjusted.sub, aes(x=state, y=net_time)) +
+  geom_violin(trim=FALSE, aes(fill=state, color=state)) +
   scale_fill_manual(values=color_scale) +
   scale_color_manual(values=color_scale) +
   geom_boxplot(width=0.75) +
@@ -208,8 +208,8 @@ gg_full_complete <- ggplot(data.m.complete.sub, aes(x=factor(1), y=net_time)) +
   labs(x = 'State', y = 'Net Time (seconds)', title = 'Full Data: Net Time vs. State') +
   theme(plot.title = element_text(hjust = 0.5))
 
-gg_segregate_complete <- ggplot(data.m.complete.sub, aes(x=state, y=net_time, color=state)) +
-  geom_violin(trim=FALSE, aes(fill=state)) +
+gg_segregate_complete <- ggplot(data.m.complete.sub, aes(x=state, y=net_time)) +
+  geom_violin(trim=FALSE, aes(fill=state, color=state)) +
   scale_fill_manual(values=color_scale) +
   scale_color_manual(values=color_scale) +
   geom_boxplot(width=0.75) +
