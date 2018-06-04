@@ -149,7 +149,8 @@ gg_adjusted_females_heatmap <- gg +
   coord_map() +
   expand_limits(x=us$long, y=us$lat) +
   labs(x = 'Longitude', y = 'Latitude', title = 'Female Runners', fill = 'Delta time') +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_fill_gradient(low='darkred', high='orangered')
 
 ##
 ## us heatmap: males with adjusted anticipated values
@@ -191,7 +192,8 @@ gg_complete_females_heatmap <- gg +
   coord_map() +
   expand_limits(x=us$long, y=us$lat) +
   labs(x = 'Longitude', y = 'Latitude', title = 'Female Runners', fill = 'Delta time') +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_fill_gradient(low='darkred', high='orangered')
 
 ##
 ## us heatmap: males with empty values removed (not adjusted)
@@ -370,7 +372,8 @@ dev.off()
 gg_correlation_female_adjusted <- ggplot(data.f.adjusted, aes(x = net_time, y = gun_time, color=as.numeric(division))) +
   geom_line() +
   labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Females: Gun Time vs. Net Time', color = 'Division') +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_color_gradient(low='darkmagenta', high='orange')
 
 ##
 ## guntime + nettime correlation: males with adjusted anticipated values
@@ -406,7 +409,8 @@ dev.off()
 gg_correlation_female_complete <- ggplot(data.f.complete, aes(x = net_time, y = gun_time, color=as.numeric(division))) +
   geom_line() +
   labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Females: Gun Time vs. Net Time', color = 'Division') +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_color_gradient(low='darkmagenta', high='orange')
 
 ##
 ## guntime + nettime correlation: males with empty values removed (not adjusted)
