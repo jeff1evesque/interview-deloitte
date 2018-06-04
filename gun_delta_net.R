@@ -150,7 +150,7 @@ gg_adjusted_females_heatmap <- gg +
   expand_limits(x=us$long, y=us$lat) +
   labs(x = 'Longitude', y = 'Latitude', title = 'Female Runners', fill = 'Delta time') +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_fill_gradient(low='darkred', high='orangered')
+  scale_fill_gradient(low='darkred', high='orange')
 
 ##
 ## us heatmap: males with adjusted anticipated values
@@ -193,7 +193,7 @@ gg_complete_females_heatmap <- gg +
   expand_limits(x=us$long, y=us$lat) +
   labs(x = 'Longitude', y = 'Latitude', title = 'Female Runners', fill = 'Delta time') +
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_fill_gradient(low='darkred', high='orangered')
+  scale_fill_gradient(low='darkred', high='orange')
 
 ##
 ## us heatmap: males with empty values removed (not adjusted)
