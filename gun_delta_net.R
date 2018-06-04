@@ -240,7 +240,7 @@ gg_adjusted_females_boxplot <- gg_adjusted_females +
   theme(plot.title = element_text(hjust = 0.5))
 
 ## save visualization
-png('visualization/descriptive-female-adjusted.png', width = 1200, height = 600)
+png('visualization/deltatime-female-adjusted.png', width = 1200, height = 600)
 
 ## generate grid to contain visualization
 grid.arrange(
@@ -275,7 +275,7 @@ gg_adjusted_males_boxplot <- gg_adjusted_males +
   theme(plot.title = element_text(hjust = 0.5))
 
 ## save visualization
-png('visualization/descriptive-males-adjusted.png', width = 1200, height = 600)
+png('visualization/deltatime-males-adjusted.png', width = 1200, height = 600)
 
 ## generate grid to contain visualization
 grid.arrange(
@@ -310,14 +310,14 @@ gg_complete_females_boxplot <- gg_complete_females +
   theme(plot.title = element_text(hjust = 0.5))
 
 ## save visualization
-png('visualization/descriptive-female-complete.png', width = 1200, height = 600)
+png('visualization/deltatime-female-complete.png', width = 1200, height = 600)
 
 ## generate grid to contain visualization
 grid.arrange(
   gg_complete_females_bar,
   gg_complete_females_boxplot,
   nrow = 1,
-  top = 'Gun Time minus Net Time: with complete anticipated values',
+  top = 'Gun Time minus Net Time: with NA values removed',
   bottom = textGrob(
     'Jeffrey Levesque',
     gp = gpar(fontface = 3, fontsize = 9),
@@ -345,14 +345,14 @@ gg_complete_males_boxplot <- gg_complete_males +
   theme(plot.title = element_text(hjust = 0.5))
 
 ## save visualization
-png('visualization/descriptive-males-complete.png', width = 1200, height = 600)
+png('visualization/deltatime-males-complete.png', width = 1200, height = 600)
 
 ## generate grid to contain visualization
 grid.arrange(
   gg_complete_males_bar,
   gg_complete_males_boxplot,
   nrow = 1,
-  top = 'Gun Time minus Net Time: with complete anticipated values',
+  top = 'Gun Time minus Net Time: with NA values removed',
   bottom = textGrob(
     'Jeffrey Levesque',
     gp = gpar(fontface = 3, fontsize = 9),
@@ -363,3 +363,76 @@ grid.arrange(
 
 ## close current plot
 dev.off()
+
+##
+## guntime + nettime correlation: females with adjusted anticipated values
+##
+gg_correlation_female_adjusted <- ggplot(data.f.adjusted, aes(x = net_time, y = gun_time, color=as.numeric(division))) +
+  geom_line() +
+  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Females: Gun Time vs. Net Time', color = 'Division') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+##
+## guntime + nettime correlation: males with adjusted anticipated values
+##
+gg_correlation_male_adjusted <- ggplot(data.m.adjusted, aes(x = net_time, y = gun_time, color=as.numeric(division))) +
+  geom_line() +
+  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Males: Gun Time vs. Net Time', color = 'Division') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+## save visualization
+png('visualization/correlation-times-adjusted.png', width = 1200, height = 600)
+
+## generate grid to contain visualization
+grid.arrange(
+  gg_correlation_female_adjusted,
+  gg_correlation_male_adjusted,
+  nrow = 1,
+  top = 'Correlation: with anticipated values',
+  bottom = textGrob(
+    'Jeffrey Levesque',
+    gp = gpar(fontface = 3, fontsize = 9),
+    hjust = 1,
+    x = 1
+  )
+)
+
+## close current plot
+dev.off()
+
+##
+## guntime + nettime correlation: females with empty values removed (not adjusted)
+##
+gg_correlation_female_complete <- ggplot(data.f.complete, aes(x = net_time, y = gun_time, color=as.numeric(division))) +
+  geom_line() +
+  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Females: Gun Time vs. Net Time', color = 'Division') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+##
+## guntime + nettime correlation: males with empty values removed (not adjusted)
+##
+gg_correlation_male_complete <- ggplot(data.m.complete, aes(x = net_time, y = gun_time, color=as.numeric(division))) +
+  geom_line() +
+  labs(x = 'Net Time (seconds)', y = 'Gun Time (seconds)', title = 'Males: Gun Time vs. Net Time', color = 'Division') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+## save visualization
+png('visualization/correlation-times-complete.png', width = 1200, height = 600)
+
+## generate grid to contain visualization
+grid.arrange(
+  gg_correlation_female_complete,
+  gg_correlation_male_complete,
+  nrow = 1,
+  top = 'Correlation: with NA values removed',
+  bottom = textGrob(
+    'Jeffrey Levesque',
+    gp = gpar(fontface = 3, fontsize = 9),
+    hjust = 1,
+    x = 1
+  )
+)
+
+## close current plot
+dev.off()
+
