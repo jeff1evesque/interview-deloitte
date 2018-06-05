@@ -5,9 +5,11 @@
 ##        of racers of the same division?
 ##
 
-## set project cwd
-cwd <- dirname(rstudioapi::getSourceEditorContext()$path)
-setwd(cwd)
+## set project cwd: only execute in RStudio
+if (nzchar(Sys.getenv('RSTUDIO_USER_IDENTITY'))) {
+  cwd <- dirname(rstudioapi::getSourceEditorContext()$path)
+  setwd(cwd)
+}
 
 ## utility functions
 devtools::install_local(paste(cwd, sep='', '/packages/deloitteUtility'))
