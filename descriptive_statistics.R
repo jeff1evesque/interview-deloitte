@@ -154,7 +154,7 @@ mode.m.complete <- names(table(data.m.complete$net_time))[table(data.m.complete$
 range.m.complete <- range(data.m.complete$net_time)
 
 ##
-## barchart: mean, median, mode
+## barchart: mean, median
 ##
 data.descriptive <- data.frame(
   c(mean.f.adjusted, median.f.adjusted),
@@ -164,6 +164,22 @@ data.descriptive <- data.frame(
 )
 colnames(data.descriptive) <- c('female_adjusted', 'male_adjusted', 'female_complete', 'male_complete')
 rownames(data.descriptive) <- c('mean', 'median')
+
+## melt dataframe
+data.descriptive <- melt(as.matrix(data.descriptive))
+
+ggplot(data.descriptive) +
+  geom_bar(aes(x=Var1, y=value, fill=Var1), stat = 'identity') +
+  facet_wrap( ~Var2) +
+  labs(x = 'Descriptive Statistic', y = 'Net Time (seconds)', title = 'Net Time vs. Descriptive Statistic') +
+  theme(plot.title = element_text(hjust = 0.5))
+
+ggsave(
+  'visualization/mean-median.png',
+  width = 16,
+  height = 9,
+  dpi = 100
+)
 
 ##
 ## boxplot + points: females with adjusted anticipated values
