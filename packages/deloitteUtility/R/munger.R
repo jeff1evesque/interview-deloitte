@@ -1,5 +1,5 @@
 ##
-## strReverse.R, reverses a string.
+## munger.R, generate necessary dataframes.
 ##
 ## Note: https://stackoverflow.com/a/13613183
 ##
