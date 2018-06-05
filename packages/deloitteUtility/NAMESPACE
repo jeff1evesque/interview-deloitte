@@ -1,3 +1,4 @@
 export(load_package)
 export(strReverse)
 export(create_division)
+export(munger)
