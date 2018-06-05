@@ -4,8 +4,6 @@
 ## Note: https://stackoverflow.com/a/13613183
 ##
 munger <- function(filename, complete=FALSE) {
-  
-  
   ## load packages
   load_package(c('reshape2', 'openintro', 'Rmisc'))
   

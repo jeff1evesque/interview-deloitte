@@ -12,8 +12,10 @@ setwd(cwd)
 devtools::install_local(paste(cwd, sep='', '/packages/deloitteUtility'))
 library('deloitteUtility')
 
+## load packages
 load_package(c('ggplot2', 'grid', 'gridExtra', 'oce'))
 
+## create dataframes
 data.f.adjusted <- munger('MA_Exer_PikesPeak_Females.txt')
 data.m.adjusted <- munger('MA_Exer_PikesPeak_Males.txt')
 data.f.complete <- munger('MA_Exer_PikesPeak_Females.txt', TRUE)
