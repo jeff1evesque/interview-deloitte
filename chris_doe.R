@@ -34,10 +34,10 @@ data.m.complete$name <- tolower(data.m.complete$name)
 ## chris doe's division: with adjusted anticipated values
 ##
 row_adjusted <- which(data.m.adjusted$name == 'chris doe')
-column_division_adjusted <- which(colnames(data.m.adjusted) == 'division')
-column_net_time_adjusted <- which(colnames(data.m.adjusted) == 'net_time')
-division_adjusted_chris <- data.m.adjusted[row_adjusted, column_division_adjusted]
-time_adjusted_chris <- data.m.adjusted[row_adjusted, column_net_time_adjusted]
+column_division <- which(colnames(data.m.adjusted) == 'division')
+column_net_time <- which(colnames(data.m.adjusted) == 'net_time')
+division_chris <- data.m.adjusted[row_adjusted, column_division]
+time_adjusted_chris <- data.m.adjusted[row_adjusted, column_net_time]
 
 ## create subset dataframe
 data.m.adjusted.sub <- subset(data.m.adjusted[order(data.m.adjusted$net_time),], as.numeric(division) == division_chris, select = colnames(data.m.adjusted))
