@@ -156,26 +156,53 @@ range.m.complete <- range(data.m.complete$net_time)
 ##
 ## barchart: mean, median
 ##
-data.descriptive <- data.frame(
-  c(mean.f.adjusted, median.f.adjusted),
-  c(mean.m.adjusted, median.m.adjusted),
-  c(mean.f.complete, median.f.complete),
-  c(mean.m.complete, median.m.complete)
+data.descriptive.adjusted <- data.frame(
+  c(mean.f.adjusted, mean.m.adjusted),
+  c(median.f.adjusted, median.m.adjusted)
 )
-colnames(data.descriptive) <- c('female_adjusted', 'male_adjusted', 'female_complete', 'male_complete')
-rownames(data.descriptive) <- c('mean', 'median')
+colnames(data.descriptive.adjusted) <- c('mean', 'median')
+rownames(data.descriptive.adjusted) <- c('female', 'male')
+
+data.descriptive.complete <- data.frame(
+  c(mean.f.complete, mean.m.complete),
+  c(median.f.complete, median.m.complete)
+)
+colnames(data.descriptive.complete) <- c('mean', 'median')
+rownames(data.descriptive.complete) <- c('female', 'male')
 
 ## melt dataframe
-data.descriptive <- melt(as.matrix(data.descriptive))
+data.descriptive.adjusted <- melt(as.matrix(data.descriptive.adjusted))
+data.descriptive.complete <- melt(as.matrix(data.descriptive.complete))
 
-ggplot(data.descriptive) +
+##
+## mean + median: with adjusted anticipated values
+##
+gg_descriptive_adjusted <- ggplot(data.descriptive.adjusted) +
   geom_bar(aes(x=Var1, y=value, fill=Var1), stat = 'identity') +
-  facet_wrap( ~Var2) +
-  labs(x = 'Descriptive Statistic', y = 'Net Time (seconds)', title = 'Net Time vs. Descriptive Statistic') +
-  theme(plot.title = element_text(hjust = 0.5))
+  facet_wrap(~Var2) +
+  labs(x = 'Gender', y = 'Net Time (seconds)', title = 'Net Time vs. Gender', fill='Gender: with adjusted anticipated values') +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_fill_manual(values=c('darkred', 'darkblue'))
 
 ggsave(
-  'visualization/mean-median.png',
+  'visualization/mean-median-adjusted.png',
+  width = 16,
+  height = 9,
+  dpi = 100
+)
+
+##
+## mean + median: with empty values removed (not adjusted)
+##
+gg_descriptive_complete <- ggplot(data.descriptive.complete) +
+  geom_bar(aes(x=Var1, y=value, fill=Var1), stat = 'identity') +
+  facet_wrap(~Var2) +
+  labs(x = 'Gender', y = 'Net Time (seconds)', title = 'Net Time vs. Gender: with empty values removed (not adjusted)', fill='Gender') +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_fill_manual(values=c('darkred', 'darkblue'))
+
+ggsave(
+  'visualization/mean-median-complete.png',
   width = 16,
   height = 9,
   dpi = 100
