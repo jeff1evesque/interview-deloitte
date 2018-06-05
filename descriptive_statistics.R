@@ -154,6 +154,61 @@ mode.m.complete <- names(table(data.m.complete$net_time))[table(data.m.complete$
 range.m.complete <- range(data.m.complete$net_time)
 
 ##
+## barchart: mean, median
+##
+data.descriptive.adjusted <- data.frame(
+  c(mean.f.adjusted, mean.m.adjusted),
+  c(median.f.adjusted, median.m.adjusted)
+)
+colnames(data.descriptive.adjusted) <- c('mean', 'median')
+rownames(data.descriptive.adjusted) <- c('female', 'male')
+
+data.descriptive.complete <- data.frame(
+  c(mean.f.complete, mean.m.complete),
+  c(median.f.complete, median.m.complete)
+)
+colnames(data.descriptive.complete) <- c('mean', 'median')
+rownames(data.descriptive.complete) <- c('female', 'male')
+
+## melt dataframe
+data.descriptive.adjusted <- melt(as.matrix(data.descriptive.adjusted))
+data.descriptive.complete <- melt(as.matrix(data.descriptive.complete))
+
+##
+## mean + median: with adjusted anticipated values
+##
+gg_descriptive_adjusted <- ggplot(data.descriptive.adjusted) +
+  geom_bar(aes(x=Var1, y=value, fill=Var1), stat = 'identity') +
+  facet_wrap(~Var2) +
+  labs(x = 'Gender', y = 'Net Time (seconds)', title = 'Gender: with adjusted anticipated values', fill='Gender') +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_fill_manual(values=c('darkred', 'darkblue'))
+
+ggsave(
+  'visualization/mean-median-adjusted.png',
+  width = 16,
+  height = 9,
+  dpi = 100
+)
+
+##
+## mean + median: with empty values removed (not adjusted)
+##
+gg_descriptive_complete <- ggplot(data.descriptive.complete) +
+  geom_bar(aes(x=Var1, y=value, fill=Var1), stat = 'identity') +
+  facet_wrap(~Var2) +
+  labs(x = 'Gender', y = 'Net Time (seconds)', title = 'Net Time vs. Gender: with empty values removed (not adjusted)', fill='Gender') +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_fill_manual(values=c('darkred', 'darkblue'))
+
+ggsave(
+  'visualization/mean-median-complete.png',
+  width = 16,
+  height = 9,
+  dpi = 100
+)
+
+##
 ## boxplot + points: females with adjusted anticipated values
 ##
 gg_adjusted_females <- ggplot(data.f.adjusted)
