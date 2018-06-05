@@ -180,7 +180,7 @@ data.descriptive.complete <- melt(as.matrix(data.descriptive.complete))
 gg_descriptive_adjusted <- ggplot(data.descriptive.adjusted) +
   geom_bar(aes(x=Var1, y=value, fill=Var1), stat = 'identity') +
   facet_wrap(~Var2) +
-  labs(x = 'Gender', y = 'Net Time (seconds)', title = 'Net Time vs. Gender', fill='Gender: with adjusted anticipated values') +
+  labs(x = 'Gender', y = 'Net Time (seconds)', title = 'Gender: with adjusted anticipated values', fill='Gender') +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_fill_manual(values=c('darkred', 'darkblue'))
 
