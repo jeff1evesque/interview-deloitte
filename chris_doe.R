@@ -42,8 +42,8 @@ division_chris <- data.m.adjusted[row_adjusted, column_division]
 time_adjusted_chris <- data.m.adjusted[row_adjusted, column_net_time]
 
 ## create subset dataframe
-data.m.adjusted.sub <- subset(data.m.adjusted[order(data.m.adjusted$net_time),], as.numeric(division) == division_chris, select = colnames(data.m.adjusted))
-data.m.complete.sub <- subset(data.m.adjusted[order(data.m.adjusted$net_time),], as.numeric(division) == division_chris, select = colnames(data.m.adjusted))
+data.m.adjusted.sub <- subset(data.m.adjusted[data.m.adjusted$net_time < quantile(data.m.adjusted$net_time, 0.10),], as.numeric(division) == division_chris, select = colnames(data.m.adjusted))
+data.m.complete.sub <- subset(data.m.complete[data.m.complete$net_time < quantile(data.m.complete$net_time, 0.10),], as.numeric(division) == division_chris, select = colnames(data.m.complete))
 
 ## generate boxplot + violin
 color_scale <- c('darkblue', 'darkred', 'darkgreen', 'dodgerblue2', 'darkorchid')
@@ -92,10 +92,6 @@ column_division_complete <- which(colnames(data.m.complete) == 'division')
 column_net_time_complete <- which(colnames(data.m.complete) == 'net_time')
 division_complete_chris <- data.m.complete[row_complete, column_division_complete]
 time_complete_chris <- data.m.complete[row_complete, column_net_time_complete]
-
-## create subset dataframe
-data.m.complete.sub <- subset(data.m.complete[order(data.m.complete$net_time),], as.numeric(division) == division_chris, select = colnames(data.m.complete))
-data.m.complete.sub <- subset(data.m.complete[order(data.m.complete$net_time),], as.numeric(division) == division_chris, select = colnames(data.m.complete))
 
 ## generate boxplot + violin
 color_scale <- c('darkblue', 'darkred', 'darkgreen', 'dodgerblue2', 'darkorchid')
