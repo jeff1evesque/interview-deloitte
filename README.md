@@ -1,4 +1,4 @@
-# Deloitte Data science
+# Deloitte Data Science
 
 The repository contains the coding challenge for a data science position at [Deloitte](https://www2.deloitte.com/us/en.html).
 Relevant exercise [documents](https://github.com/jeff1evesque/deloitte-data-exercise/tree/master/data)
